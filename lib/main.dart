@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:udemy/pages/HomePage.dart';
 
 void main() {
   runApp(const App());
@@ -11,12 +12,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Go Moon',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(100, 31, 31, 1),
+        scaffoldBackgroundColor: Color.fromARGB(31, 131, 131, 21),
       ),
-      home: Scaffold(
-        
-      ),
+      home: HomePage(),
     );
   }
 }
