@@ -1,12 +1,34 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  late double _deviceHeight, _deviceWidth;
 
   @override
   Widget build(BuildContext context) {
+    _deviceHeight = MediaQuery.of(context).size.height;
+    _deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: _pageTittle(),
+      body: SafeArea(
+        child: Container(
+          height: _deviceHeight,
+          width: _deviceWidth,
+          padding: EdgeInsets.symmetric(
+            horizontal: _deviceWidth * 0.05,
+            vertical: _deviceHeight * 0.05,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _pageTittle(),
+              _destinationDropDownWidget(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -15,7 +37,7 @@ class HomePage extends StatelessWidget {
       '#GoMoon',
       style: TextStyle(
         color: Colors.white,
-        fontSize: 50,
+        fontSize: 60,
         fontWeight: FontWeight.w800,
       ),
     );
@@ -30,6 +52,26 @@ class HomePage extends StatelessWidget {
             'assests/images/astro_moon.png',
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _destinationDropDownWidget() {
+    List<String> _items = [
+      'James Webb Station',
+      'Preneour Station',
+    ];
+    return Container(
+      child: DropdownButton(
+        onChanged: (_) {},
+        items: _items
+            .map(
+              (e) => DropdownMenuItem(
+                child: Text(e),
+                value: e,
+              ),
+            )
+            .toList(),
       ),
     );
   }

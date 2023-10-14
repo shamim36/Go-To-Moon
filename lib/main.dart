@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       title: 'Go Moon',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(31, 131, 131, 21),
+        scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0),
       ),
       home: HomePage(),
     );
