@@ -1,6 +1,6 @@
-# udemy
+# ucf
 
-Udemy Courses
+UCF
 
 ## Getting Started
 ![Alt text](image.png)
