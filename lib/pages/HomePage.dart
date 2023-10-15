@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:udemy/widgets/custom_dropdown.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -15,22 +16,34 @@ class HomePage extends StatelessWidget {
           height: _deviceHeight,
           width: _deviceWidth,
           padding: EdgeInsets.symmetric(
-            horizontal: _deviceWidth * 0.05,
-            vertical: _deviceHeight * 0.05,
+            horizontal: _deviceWidth * 0.00,
+            vertical: _deviceHeight * 0.00,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              _pageTittle(),
-              _destinationDropDownWidget(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 0.05),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _pageTittle(),
+                    _bookRiderWidget(),
+                  ],
+                ),
+              ),
+           Align(
+            alignment: Alignment.centerRight,
+            child: _astroImageWidget(),
+           ),
             ],
           ),
         ),
       ),
     );
   }
+
 
   Widget _pageTittle() {
     return Text(
@@ -43,8 +56,11 @@ class HomePage extends StatelessWidget {
     );
   }
 
+
   Widget _astroImageWidget() {
     return Container(
+      height: _deviceHeight*0.55,
+      width: _deviceWidth *0.75,
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
@@ -56,23 +72,54 @@ class HomePage extends StatelessWidget {
     );
   }
 
+
   Widget _destinationDropDownWidget() {
-    List<String> _items = [
+    return CustomDropDouwnButtonClass(values: const [
       'James Webb Station',
       'Preneour Station',
-    ];
+    ], width: _deviceWidth);
+  }
+
+
+  Widget _travellersInformationWidget(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CustomDropDouwnButtonClass(values: const ['1','2','3','4'], width: _deviceWidth * 0.45,),
+        CustomDropDouwnButtonClass(values: const ['Economy','Bussiness','First','Private'], width: _deviceWidth * 0.40,),
+      ],
+    );
+  }
+
+
+  Widget _bookRiderWidget(){
     return Container(
-      child: DropdownButton(
-        onChanged: (_) {},
-        items: _items
-            .map(
-              (e) => DropdownMenuItem(
-                child: Text(e),
-                value: e,
-              ),
-            )
-            .toList(),
+      height: _deviceHeight*0.23,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _destinationDropDownWidget(),
+          _travellersInformationWidget(),
+          _rideButton(),
+        ],
       ),
     );
   }
+
+
+  Widget _rideButton(){
+    return Container(
+      margin: EdgeInsets.only(bottom: _deviceHeight*0.001),
+      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10),),
+      width: _deviceWidth,
+      height: _deviceHeight*0.060,
+      child: MaterialButton(onPressed: (){},child: Text('Book Ride!',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),),),
+    );
+  }
+
+
 }
